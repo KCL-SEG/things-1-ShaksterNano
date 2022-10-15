@@ -1,10 +1,9 @@
-from django.core.validators import MaxValueValidator
-from django.db import models
-from django.db.models import Model, CharField, PositiveIntegerField
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db.models import Model, CharField, IntegerField
 
 
 class Thing(Model):
 
-    name: CharField = models.CharField(max_length=30, blank=False, unique=True)
-    description: CharField = models.CharField(max_length=120, blank=True)
-    quantity: PositiveIntegerField = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
+    name: CharField = CharField(max_length=30, blank=False, unique=True)
+    description: CharField = CharField(max_length=120, blank=True)
+    quantity: IntegerField = IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
